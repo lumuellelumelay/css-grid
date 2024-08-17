@@ -18,7 +18,7 @@
     <div class="item item6">6</div>
     <div class="item item7">7</div>
     <div class="item item8">8</div>
-    <div class="item item8">💩</div>
+    <div class="item itempoop">💩</div>
     <div class="item item9">9</div>
     <div class="item item10">10</div>
     <div class="item item11">11</div>
@@ -48,7 +48,20 @@
       display: grid;
       grid-gap: 20px;
       grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(7, 1fr);
     }
+
+    .itempoop {
+      background-color: #bad;
+      grid-column-start: 4; /** Track value **/
+      grid-column-end: 6; /** Track value **/
+    }
+
+    .item14{
+      grid-column: 1 / span 2; /** Start track / span num of tracks **/
+      grid-row: 4 / span 2; /** Start track / span num of tracks **/
+    }
+
   </style>
 </body>
 
