@@ -44,8 +44,29 @@
 
   <style>
     .container {
+      /** example of area line names **/
       display: grid;
       grid-gap: 20px;
+
+      grid-template-areas:
+      "nameOne nameTwo nameThree nameFour nameFive"
+      "nameOne nameTwo nameThree nameFour nameFive"
+      "nameOne nameTwo nameThree nameFour nameFive"
+      "nameOne nameTwo nameThree nameFour nameFive"
+      "nameOne nameTwo nameThree nameFour nameFive"
+      "nameOne nameTwo nameThree nameFour nameFive"
+      ;
+    }
+
+    .item3{
+      /** using the area line names **/
+      grid-column: nameThree-start / nameFour-end;
+    }
+
+    .item5{
+      /** another example of using the area line names **/
+      grid-column: nameOne-start / nameTwo-end;
+      grid-row: nameOne-start / nameTwo-end;
     }
   </style>
 </body>

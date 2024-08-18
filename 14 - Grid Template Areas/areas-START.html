@@ -29,6 +29,43 @@
     .container {
       display: grid;
       grid-gap: 20px;
+      grid-template-columns: 1fr 10fr 1fr;
+      grid-template-rows: repeat(3, 150px);
+
+      /** naming the ares of the grid **/
+      grid-template-areas: 
+      "side-bar-left content-page side-bar-right"
+      "side-bar-left content-page side-bar-right"
+      "footer footer footer"
+      ;
+    }
+
+    .item1{
+      grid-area: side-bar-left;
+    }
+    .item2{
+      grid-area: content-page;
+    }
+    .item3{
+      grid-area: side-bar-right;
+    }
+    .footer{
+      grid-area: footer;
+    }
+
+    @media (max-width: 700px) {
+      .container{
+        grid-template-areas: 
+        "side-bar-left side-bar-left"
+        "content-page content-page"
+        "side-bar-right side-bar-right"
+        "footer footer "
+        ;
+
+        grid-template-columns: none;
+        grid-template-rows: repeat(auto-fit, minmax(150px, 1fr));
+      }
+      
     }
   </style>
 </body>
