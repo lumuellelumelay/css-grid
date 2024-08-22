@@ -21,6 +21,15 @@
     .container {
       display: grid;
       grid-gap: 20px;
+      grid-template-rows: repeat(10, 1fr);
+    }
+
+    .logo {
+      order: 1; /** order by defualt is zero **/
+    }
+
+    .nav {
+      order: 2;
     }
   </style>
 </body>

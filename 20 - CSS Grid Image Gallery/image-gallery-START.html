@@ -20,7 +20,7 @@
   <section class="gallery">
   </section>
 
-
+  <!-- CSS -->
   <style>
     * {
       box-sizing: border-box;
@@ -47,13 +47,98 @@
 
     .close {
       background: none;
-      color: white;
+      color: black;
       border: 0;
     }
 
-    .gallery {}
+    .gallery {
+      /** code starts here **/
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 100px);
+      /** giving auto explicit rows to the grids **/
+      grid-auto-rows: 100px;
+      grid-auto-flow: dense;
+    }
 
+    /** code starts here **/
+    /** code for v2-v4 **/
+    .item{
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1;
+      grid-template-rows: 1;
+    }
 
+    /** code starts here **/
+    /** for img **/
+    .item img {
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /** for overlay background **/
+    .item__overlay {
+      grid-column: 1 / -1;
+      grid-row: 1 / -1;
+
+      /** centering the buttonss **/
+      display: grid;
+      justify-items: center;
+      align-items: center;
+
+      /** for the background color upon hovering the img **/
+      background-color: #ff00dd32;
+      position: relative;
+
+      /** for hiding the background overlay **/
+      transform: translateY(100%);
+      /** for the transition effect of the overlay background **/
+      transition: linear 0.2s;
+    }
+
+    /** for overlay buttons **/
+    .item__overlay button {
+      background: none;
+      border: 2px solid white;
+      color: white;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 5px;
+    }
+
+    /** for hover: bringing the transform to 0 **/
+    .item:hover .item__overlay{
+      transform: translateY(0);
+    }
+
+    /** for grid rows **/
+    .item.v2{
+      grid-row: span 2;
+    }
+
+    .item.v3{
+      grid-row: span 3;
+    }
+
+    .item.v4{
+      grid-row: span 4;
+    }
+
+    /** for grid columns **/
+    .item.h2{
+      grid-column: span 2;
+    }
+
+    .item.h3{
+      grid-column: span 3;
+    }
+
+    .item.h4{
+      grid-column: span 4;
+    }
 
     .overlay {
       position: fixed;
@@ -66,11 +151,14 @@
       z-index: 2;
     }
 
-    .overlay.open {
+    /** when the image is open **/
+    .overlay.openImage {
       display: grid;
+      justify-items: center;
+      align-items: center;
     }
 
-    .overlay figure {
+    .overlay .overlay-inner {
       background: white;
       width: 700px;
       padding: 20px;
@@ -81,7 +169,75 @@
     }
   </style>
 
+  <!-- JavaScript -->
   <script>
+    // code starts here... //
+
+    // creating the image items and overlays
+    // selecting the gallery class and overlay class
+    const gallery = document.querySelector(".gallery");
+    const overlay = document.querySelector(".overlay");
+
+    // selecting img tag, update when img was click and close button
+    const overlayImage = overlay.querySelector('img');
+    const overlayClose = overlay.querySelector('.close');
+
+    // function => generateHTML with units of "h" = horizontal and "v" = vertical
+    // using array with destructing as parameter for the function generateHTML
+    function generateHTML([h, v]){
+      return `
+      <div class = "item h${h} v${v}">
+        <img src ="images/${generateRandomNumber(12)}.jpg">
+        <div class="item__overlay">
+            <button>View =></button>
+        </div>
+      </div>
+      `;
+    }
+
+    // helper function to generate random from 1 to 12
+    // the parameter "limit" is the upper limit of generating numbers
+    function generateRandomNumber(limit){
+      return Math.floor(Math.random() * limit) + 1;
+    }
+
+    // creating an array with random numbers consisting of random height value and width value
+    // An array with object property of length 50 of key-value pairs of an arrays
+    // map function, [generateRandomNumber(limit), generateRandomNumber(limit)]
+    // [height value, width value]
+    const heightAndWidth = Array.from({length: 50}, () => [generateRandomNumber(4), generateRandomNumber(4)].concat([[1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1], [1, 1]]));
+    
+    const toHtml = heightAndWidth.map(generateHTML).join('');
+    gallery.innerHTML = toHtml;
+
+    // after the image items and overlay is created.
+    //
+    // when the user click the image item, this callback function is invoke 
+    // for showing the whole image when then item image its click
+    function whenClick(eventClick){
+      const getScr = eventClick.currentTarget.querySelector('img').src;
+      overlayImage.src = getScr;
+      // when the image item is clicked
+      overlay.classList.add('openImage');
+    }
+
+    // close function image
+    function closeImage() {
+      overlay.classList.remove('openImage');
+    }
+
+    // event on closing the image
+    overlayClose.addEventListener('click', closeImage);
+
+    // selecting the image item when the image being viewed (click)
+    const items = document.querySelectorAll('.item');
+    
+    // looping each items
+    // item being the element for the items array
+    // when the item is 'click', it will go to the callback function whenClick
+    items.forEach(item => item.addEventListener('click', whenClick));
+
+
   </script>
 </body>
 
