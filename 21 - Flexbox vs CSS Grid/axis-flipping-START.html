@@ -13,7 +13,7 @@
   <!-- Flipping the direction of columns -->
 
   <script>
-    function flip(e) {
+    function flip() {
       const flipper = document.querySelector('.flipper');
       flipper.classList.toggle('flip');
     }
@@ -35,6 +35,16 @@
   </div>
 
   <style>
+    /** code start here **/
+    .flipper {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    }
+
+    .flipper.flip{
+      grid-template-columns: 1fr;
+    }
   </style>
 </body>
 

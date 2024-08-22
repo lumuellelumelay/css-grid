@@ -21,10 +21,19 @@
     <div class="item">Short</div>
   </div>
   <style>
-    .flex-container {}
+    .flex-container {
+      /** code start here **/
+      /** flexbox code **/
+      display: flex;
+      display: -webkit-flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      border: 1px solid black;
+    }
 
     .flex-container>* {
-      margin: 10px;
+      /** flexbox code **/
+      flex: 1;
     }
   </style>
 </body>

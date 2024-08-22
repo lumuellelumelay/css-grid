@@ -50,12 +50,21 @@
       <button>❌</button>
     </div>
   </div>
+
   <style>
     .track {
+      display: grid;
+      display: -ms-grid;
+      display: -moz-grid;
       background: white;
       padding: 10px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      /** start code here **/
+      grid-auto-flow: column;
+      grid-template-columns: 1fr;
     }
+
   </style>
 </body>
 
