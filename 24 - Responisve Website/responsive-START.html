@@ -88,20 +88,32 @@
 
     <section class="gallery">
       <h2>Instant Grams</h2>
-      <img src="https://source.unsplash.com/random/201x201" alt="">
-      <img src="https://source.unsplash.com/random/202x202" alt="">
-      <img src="https://source.unsplash.com/random/203x203" alt="">
-      <img src="https://source.unsplash.com/random/204x204" alt="">
-      <img src="https://source.unsplash.com/random/205x205" alt="">
-      <img src="https://source.unsplash.com/random/206x206" alt="">
-      <img src="https://source.unsplash.com/random/207x207" alt="">
-      <img src="https://source.unsplash.com/random/207x208" alt="">
-      <img src="https://source.unsplash.com/random/207x209" alt="">
-      <img src="https://source.unsplash.com/random/207x210" alt="">
+      <img src="https://picsum.photos/300?random=1" alt="">
+      <img src="https://picsum.photos/300?random=2" alt="">
+      <img src="https://picsum.photos/300?random=3" alt="">
+      <img src="https://picsum.photos/300?random=4" alt="">
+      <img src="https://picsum.photos/300?random=5" alt="">
+      <img src="https://picsum.photos/300?random=6" alt="">
+      <img src="https://picsum.photos/300?random=7" alt="">
+      <img src="https://picsum.photos/300?random=8" alt="">
+      <img src="https://picsum.photos/300?random=9" alt="">
+      <img src="https://picsum.photos/300?random=10" alt="">
     </section>
   </div>
 
   <script>
+    // code starts here
+    // creating variables for the navigation
+    const navigationButton = document.querySelector('button[aria-expanded]');
+
+    // creating function for toggling the navigation
+    function toggleNavigation({ target }) {
+      const expandNavigation = target.getAttribute('aria-expanded') === 'true' || false;
+      navigationButton.setAttribute('aria-expanded', !expandNavigation);
+    }
+
+    // adding an eventlistener
+    navigationButton.addEventListener('click', toggleNavigation);
   </script>
   
 </body>

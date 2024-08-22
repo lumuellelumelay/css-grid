@@ -12,3 +12,236 @@ img {
   max-width: 100%;
 }
 
+/** code starts here **/
+
+/** **/
+/** Selecting Wrapper **/
+.wrapper {
+  display: grid;
+  gap: 20px;
+}
+
+
+/** **/
+/** Top content Section (Hero Section) **/
+.top {
+  display: grid;
+  grid-template-areas: 
+  "hero hero cta1"
+  "hero hero cta2"
+  ;
+  gap: 20px;
+}
+
+/** hero picture and items **/
+.hero {
+  display: flex;
+  grid-area: hero;
+  padding: 50px;
+  min-height: 400px;
+
+  /** for the picture **/
+  background: white url(images/taco.jpg);
+
+  background-size: cover;
+  background-position: center;
+
+  /** for the content [flex box]**/
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.hero > * {
+  background: var(--yellow);
+}
+
+/** for the cta [cta1 and cta2] **/
+.cta {
+  display: grid;
+  background: var(--yellow);
+
+  /** centering the items of the cta **/
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+}
+
+.cta p{
+  margin: 0;
+}
+
+.cta1 {
+  grid-area: cta1;
+}
+
+.cta2 {
+  grid-area: cta2;
+}
+
+.price {
+  font-size: 60px;
+  font-weight: 300;
+}
+
+/** **/
+/** Navigation Section **/
+.menu ul {
+  /** displaying the menu as grids **/
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+
+  padding: 0;
+  list-style: none;
+}
+
+/** styling the menu of the navigation **/
+.menu a {
+  display: block;
+  padding: 10px;
+  background: var(--yellow);
+
+  text-decoration: none;
+  text-align: center;
+  color: var(--black);
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+[aria-controls="menu-list"] {
+  display: none;
+}
+
+/** **/
+/** Features Section **/
+.features {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/** styling the contents of feature **/
+.feature {
+  padding: 10px;
+
+  background: white;
+  border: 1px solid black;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+
+  text-align: center;
+}
+
+.feature .icon {
+  font-size: 50px;
+}
+
+.feature p {
+  color: rgba(0, 0, 0, 0.7)
+}
+
+/** **/
+/** About Section **/
+.about {
+  display: grid;
+  padding: 50px;
+
+  background-color: white;
+
+  grid-template-columns: 400px 1fr;
+  align-items: center;
+}
+
+/** **/
+/** Gallery Section **/
+.gallery {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/** for image items and for the styling of the gallery section title **/
+.gallery h2 {
+  display: grid;
+
+  /** for the image **/
+  grid-column: 1 / -1;
+
+  /** for the title **/
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+
+  align-items: center;
+}
+
+.gallery img {
+  width: 100%;
+}
+
+/** for the title section style of the gallery section **/
+.gallery h2::before, .gallery h2::after {
+  display: block;
+  content: "";
+  height: 10px;
+  background: linear-gradient(to var(--direction, left), var(--yellow), transparent);
+}
+
+.gallery h2::after {
+  background: linear-gradient(to var(--direction, right), var(--yellow), transparent);
+}
+
+/** **/
+/** **/
+/** for responsiveness **/
+@media (max-width: 1000px) {
+  .menu{
+    perspective: 800px;
+    order: -1;
+  }
+
+  .menu ul {
+    max-height: 0;
+    overflow: hidden;
+    transform: rotateX(90deg);
+    transition: linear 0.5s;
+  }
+
+  [aria-controls="menu-list"] {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  [aria-expanded="true"] ~ ul{
+    display: grid;
+    max-height: 500px;
+    transform: rotateX(0);
+  }
+
+  [aria-expanded="false"] .close, [aria-expanded="true"] .open {
+    display: none;
+  }
+
+  [aria-expanded="true"] .close {
+    display: inline-block;
+  }
+
+}
+
+@media (max-width: 700px) {
+  .top {
+    grid-template-areas:
+    "hero hero"
+    "cta1 cta2"
+    ;
+  }
+}
+
+@media (max-width: 500px) {
+  .top {
+    grid-template-areas:
+    "hero"
+    "cta1"
+    "cta2"
+    ;
+  }
+}
