@@ -84,3 +84,4 @@ I recommend you use the files in the repo, but if you prefer to use JSFiddle ins
 ## Self notes
 
 - revisited the lessoon 20 - CSS Grid Image Gallery for CSS and JavaScript insight
+- revisited the lesson 21 - Flexbox vs CSS Grid for Flexbox and Gridbox layout insight
